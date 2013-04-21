@@ -114,11 +114,11 @@ module Crocodoc
     http_code = nil
     
     if post_params && post_params.length > 0
-      response = RestClient.post(url, post_params, params: get_params){|response, request, result| result }
+      response = RestClient.post(url, post_params, :params => get_params){|response, request, result| result }
       result = RestClient::Request.decode(response['content-encoding'], response.body)
       http_code = Integer(response.code)
     else
-      response = RestClient.get(url, params: get_params){|response, request, result| result }
+      response = RestClient.get(url, :params => get_params){|response, request, result| result }
       result = RestClient::Request.decode(response['content-encoding'], response.body)
       http_code = Integer(response.code)
     end
@@ -136,16 +136,16 @@ module Crocodoc
   
       if json_decoded == false
         return self._error('server_response_not_valid_json', self.name, __method__, {
-          response: result,
-          get_params: get_params,
-          post_params: post_params
+          :response => result,
+          :get_params => get_params,
+          :post_params => post_params
         })
       end
       
       if json_decoded.is_a? Hash and json_decoded.has_key? 'error'
         return self._error(json_decoded['error'], self.name, __method__, {
-          get_params: get_params,
-          post_params: post_params
+          :get_params => get_params,
+          :post_params => post_params
         })
       end
         
@@ -160,18 +160,18 @@ module Crocodoc
     if http_4xx_error_codes.has_key? http_code
       error = 'server_error_' + http_code.to_s + '_' + http_4xx_error_codes[http_code]
       return self._error(error, self.name, __method__, {
-        url: url,
-        get_params: get_params,
-        post_params: post_params
+        :url => url,
+        :get_params => get_params,
+        :post_params => post_params
       })
     end
     
     if http_code >= 500 and http_code < 600
       error = 'server_error_' + http_code.to_s + '_unknown'
       return self._error(error, self.name, __method__, {
-        url: url,
-        get_params: get_params,
-        post_params: post_params
+        :url => url,
+        :get_params => get_params,
+        :post_params => post_params
       })
     end
     
