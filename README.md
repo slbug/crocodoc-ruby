@@ -37,7 +37,7 @@ If you have the gem installed:
     
 If you have the files locally:
 
-    require_relative /path/to/crocodoc-ruby/crocodoc.rb
+    require /path/to/crocodoc-ruby/crocodoc.rb
 
 Please note that this library also requires that the 'rest-client' gem is installed, and a version of Ruby >= 1.9.
     

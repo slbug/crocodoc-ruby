@@ -2,7 +2,7 @@
 
 # Require libraries and set API token
 require 'pathname'
-require_relative 'lib/crocodoc'
+require File.join(File.dirname(__FILE__), 'lib/crocodoc')
 Crocodoc.api_token = 'YOUR_API_TOKEN'
 
 # == Example #1

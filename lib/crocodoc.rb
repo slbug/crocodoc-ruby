@@ -3,12 +3,12 @@ require 'json'
 require 'rest-client'
 
 # require our exception class
-require_relative 'crocodoc_error'
+require File.join(File.dirname(__FILE__), 'crocodoc_error')
 
 # require the different crocodoc clients
-require_relative 'crocodoc/document'
-require_relative 'crocodoc/download'
-require_relative 'crocodoc/session'
+require File.join(File.dirname(__FILE__), 'crocodoc/document')
+require File.join(File.dirname(__FILE__), 'crocodoc/download')
+require File.join(File.dirname(__FILE__), 'crocodoc/session')
 
 module Crocodoc
   # The developer's Crocodoc API token
